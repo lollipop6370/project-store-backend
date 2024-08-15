@@ -8,4 +8,9 @@
         select count(*) from shop_product
     </select>
 
+    <select id="getNMProductByPage" resultType="Product">
+        select * from shop_product
+        limit #{pageSize} offset #{offset}
+    </select>
+
 </mapper>
