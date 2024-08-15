@@ -16,4 +16,14 @@ spring:
 
 #mybatis-plus配置
 mybatis-plus:
+  type-aliases-package: com.shop.pojo
   mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto  #主鍵自增長
+
+#jwt配置
+jwt:
+  token:
+    tokenExpiration: 120 #有效時間，單位分鐘
+    tokenSignKey: springproject666 #自定義密鑰
