@@ -21,6 +21,7 @@ public class HomeController {
     @GetMapping("/productCount")
     public Result getProductCount(){
         Result result = homeService.getProductCount();
+        System.out.println(result);
         return result;
     }
 }
