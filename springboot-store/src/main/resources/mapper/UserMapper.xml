@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.UserMapper">
+
+    <select id="checkUsername" resultType="boolean">
+        select exists(
+                   select 1 from shop_user where username = #{username}
+        )
+    </select>
+
+    <insert id="register">
+        insert into shop_user (username,password,email) values (#{user.username},#{user.password},#{user.email})
+    </insert>
+
+</mapper>

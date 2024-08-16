@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class HomeController {
 
-    @Autowired
-    private HomeService homeService;
+
+    private final HomeService homeService;
+
+    HomeController(HomeService homeService){
+        this.homeService = homeService;
+    }
 
     @GetMapping("/productCount")
     public Result getProductCount(){
