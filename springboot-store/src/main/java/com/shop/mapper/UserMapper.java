@@ -7,4 +7,5 @@ public interface UserMapper {
 
     Boolean checkUsername(String username);
     int register(@Param("user") User user);
+    User selectUserByUsername(@Param("username") String username);
 }

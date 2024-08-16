@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Result userLogin(User user){
+    public Result userLogin(@RequestBody User user){
         Result result = userService.userLogin(user);
         return result;
     }

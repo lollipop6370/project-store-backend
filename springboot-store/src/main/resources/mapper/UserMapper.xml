@@ -14,4 +14,7 @@
         insert into shop_user (username,password,email) values (#{user.username},#{user.password},#{user.email})
     </insert>
 
+    <select id="selectUserByUsername" resultType="user">
+        select * from shop_user where username = #{username}
+    </select>
 </mapper>
