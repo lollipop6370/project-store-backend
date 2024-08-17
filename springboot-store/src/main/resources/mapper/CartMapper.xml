@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CartMapper">
+
+    <select id="getUserCartByUId" resultType="Product">
+        select p.`id`,p.`name`,p.`price`,p.`image`,p.`type`,c.`quantity`
+        from shop_user_cart c left join shop_product p on c.`product_id` = p.`id`
+        where c.`uid` = #{uid}
+    </select>
+
+    <update id="updateList">
+        update shop_user_cart set `quantity` = #{quantity}
+        where `uid` = #{uid} and `product_id` = #{id}
+    </update>
+</mapper>

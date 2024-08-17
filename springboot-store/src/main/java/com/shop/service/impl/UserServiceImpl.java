@@ -71,4 +71,16 @@ public class UserServiceImpl implements UserService {
         System.out.println("登入成功: " + token);
         return Result.ok(data);
     }
+    /**
+     * 用tooken查UID
+     */
+    public Result findUId(String token){
+        Long uid = jwtProvider.getUserId(token);
+        return Result.ok(uid);
+    }
+
+    public Result checkLogin(String token){
+        Boolean isExpiration = jwtProvider.isExpiration(token);
+        return Result.ok(!isExpiration);
+    }
 }

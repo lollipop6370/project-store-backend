@@ -35,4 +35,14 @@ public class UserController {
         return result;
     }
 
+    @GetMapping("/uid")
+    public Result findUId(@RequestHeader String token){
+        Result result = userService.findUId(token);
+        return result;
+    }
+    @GetMapping("/checkLogin")
+    public Result checkLogin(@RequestHeader String token){
+        Result result = userService.checkLogin(token);
+        return result;
+    }
 }

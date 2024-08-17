@@ -7,6 +7,7 @@ public interface UserService {
 
     Result checkUsername(String username);
     Result register(User user);
-
     Result userLogin(User user);
+    Result findUId(String token);
+    Result checkLogin(String token);
 }
