@@ -5,6 +5,6 @@ import com.shop.utils.Result;
 
 public interface HomeService {
     Result getProductCount();
-
     Result getNMProductByPage(PageConfigItem pageConfigItem);
+    Result loadProductDetail(Integer itemId);
 }

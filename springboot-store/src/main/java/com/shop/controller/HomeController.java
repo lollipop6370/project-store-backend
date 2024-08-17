@@ -31,4 +31,10 @@ public class HomeController {
         Result result = homeService.getNMProductByPage(pageConfigItem);
         return result;
     }
+
+    @GetMapping("/nmProductByPage/detail")
+    public Result loadProductDetail(Integer id){
+        Result result = homeService.loadProductDetail(id);
+        return result;
+    }
 }

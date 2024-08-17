@@ -12,4 +12,6 @@ public interface HomeMapper {
     int getProductCount();
 
     List<Product> getNMProductByPage(int pageSize, int offset);
+
+    Product loadProductDetail(Integer itemId);
 }

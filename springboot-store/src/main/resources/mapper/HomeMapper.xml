@@ -13,4 +13,9 @@
         limit #{pageSize} offset #{offset}
     </select>
 
+    <select id="loadProductDetail" resultType="Product">
+        select * from shop_product
+        where id = #{id}
+    </select>
+
 </mapper>
