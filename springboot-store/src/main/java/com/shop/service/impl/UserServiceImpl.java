@@ -68,6 +68,8 @@ public class UserServiceImpl implements UserService {
 
         Map data = new HashMap();
         data.put("token",token);
+        data.put("uid",jwtProvider.getUserId(token));
+        data.put("username",user.getUsername());
         System.out.println("登入成功: " + token);
         return Result.ok(data);
     }
