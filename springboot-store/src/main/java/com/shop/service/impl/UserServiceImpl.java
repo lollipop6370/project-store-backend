@@ -82,7 +82,12 @@ public class UserServiceImpl implements UserService {
     }
 
     public Result checkLogin(String token){
-        Boolean isExpiration = jwtProvider.isExpiration(token);
-        return Result.ok(!isExpiration);
+        if(!"".equals(token)) {
+            Boolean isExpiration = jwtProvider.isExpiration(token);
+            return Result.ok(!isExpiration);
+        }
+        else
+            return Result.ok(true);
+
     }
 }
