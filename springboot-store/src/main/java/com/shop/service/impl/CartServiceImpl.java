@@ -41,4 +41,29 @@ public class CartServiceImpl implements CartService {
         cartMapper.updateList(uid,id,quantity);
         return Result.ok(null);
     }
+
+    /**
+     * 刪除購物車商品
+     * @param token :String
+     * @param id :Integer
+     * @return null
+     */
+    public Result deleteItem(String token, Integer id){
+        Long uid = jwtProvider.getUserId(token);
+        cartMapper.deleteItem(uid,id);
+        return Result.ok(null);
+    }
+
+    /**
+     * 購物車添加新物品
+     * @param token :String
+     * @param id :Integer
+     * @param quantity :Integer
+     * @return null
+     */
+    public Result newItem(String token, Integer id, Integer quantity){
+        Long uid = jwtProvider.getUserId(token);
+        cartMapper.newItem(uid,id,quantity);
+        return Result.ok(null);
+    }
 }

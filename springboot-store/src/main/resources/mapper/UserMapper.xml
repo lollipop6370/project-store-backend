@@ -17,4 +17,5 @@
     <select id="selectUserByUsername" resultType="user">
         select * from shop_user where username = #{username}
     </select>
+
 </mapper>

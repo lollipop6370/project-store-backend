@@ -14,4 +14,13 @@
         update shop_user_cart set `quantity` = #{quantity}
         where `uid` = #{uid} and `product_id` = #{id}
     </update>
+
+    <delete id="deleteItem">
+        delete from shop_user_cart
+        where `uid` = #{uid} and `product_id` = #{id}
+    </delete>
+
+    <insert id="newItem">
+        insert into shop_user_cart (`uid`,`product_id`,`quantity`) values (#{uid},#{id},#{quantity})
+    </insert>
 </mapper>
