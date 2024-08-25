@@ -21,7 +21,6 @@ public class BackEndUserController {
     }
     @GetMapping("/login")
     public Result backendLogin(String username, String password){
-        System.out.println(username + password);
         Result result = backEndUserService.login(username,password);
         return result;
     }
