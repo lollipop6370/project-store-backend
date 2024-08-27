@@ -8,4 +8,14 @@
         from backend_user
         where username = #{username};
     </select>
+
+    <select id="backendUser" resultType="User">
+        select *
+        from shop_user
+
+    </select>
+
+    <update id="userEdit">
+        
+    </update>
 </mapper>

@@ -1,12 +1,10 @@
 package com.shop.controller;
 
+import com.shop.pojo.User;
 import com.shop.service.BackEndUserService;
 import com.shop.utils.Result;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/backend")
@@ -22,6 +20,16 @@ public class BackEndUserController {
     @GetMapping("/login")
     public Result backendLogin(String username, String password){
         Result result = backEndUserService.login(username,password);
+        return result;
+    }
+    @GetMapping("/user")
+    public Result backendUser(){
+        Result result = backEndUserService.backendUser();
+        return result;
+    }
+    @PostMapping("/user")
+    public Result userEdit(@RequestBody User user){
+        Result result = backEndUserService.userEdit(user);
         return result;
     }
 }
