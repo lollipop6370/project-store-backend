@@ -3,16 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.BackEndUserMapper">
-    <select id="login" resultType="String">
-        select password
-        from backend_user
-        where username = #{username};
-    </select>
 
     <select id="backendUser" resultType="User">
         select *
         from shop_user
-
+        limit #{offset},#{pageSize};
     </select>
 
     <update id="userEdit">
@@ -24,4 +19,9 @@
         delete from shop_user
         where uid = #{uid};
     </delete>
+
+    <select id="userCount" resultType="int">
+        select count(*)
+        from shop_user
+    </select>
 </mapper>

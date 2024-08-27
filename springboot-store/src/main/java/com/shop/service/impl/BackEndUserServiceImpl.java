@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Math.ceil;
+
 @Service
 public class BackEndUserServiceImpl implements BackEndUserService {
 
@@ -18,15 +20,9 @@ public class BackEndUserServiceImpl implements BackEndUserService {
         this.backEndUserMapper = backEndUserMapper;
     }
 
-    public Result login(String username, String password){
-        String pass = backEndUserMapper.login(username);
-        if(!"".equals(password) && password.equals(pass))
-            return Result.ok(true);
-        else
-            return Result.build(null, ResultCodeEnum.PASSWORD_ERROR);
-    }
-    public Result backendUser(){
-        List<User> data = backEndUserMapper.backendUser();
+    public Result backendUser(Integer currentPage, Integer pageSize){
+        Integer offset = (currentPage - 1) * pageSize;
+        List<User> data = backEndUserMapper.backendUser(offset, pageSize);
         return Result.ok(data);
     }
     public Result userEdit(User user){
@@ -36,5 +32,9 @@ public class BackEndUserServiceImpl implements BackEndUserService {
     public Result userDel(Integer uid){
         backEndUserMapper.userDel(uid);
         return Result.ok(null);
+    }
+    public Result userPageCount(Integer pageSize){
+        Integer userCount = backEndUserMapper.userCount();
+        return Result.ok(ceil(Double.valueOf(userCount)/pageSize));
     }
 }
