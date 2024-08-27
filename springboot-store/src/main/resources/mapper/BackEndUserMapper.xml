@@ -16,6 +16,7 @@
     </select>
 
     <update id="userEdit">
-        
+        update shop_user set username = #{user.username}, password = #{user.password}, email = #{user.email}
+        where uid = #{user.uid};
     </update>
 </mapper>
