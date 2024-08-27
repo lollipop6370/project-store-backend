@@ -33,4 +33,8 @@ public class BackEndUserServiceImpl implements BackEndUserService {
         backEndUserMapper.userEdit(user);
         return Result.ok(null);
     }
+    public Result userDel(Integer uid){
+        backEndUserMapper.userDel(uid);
+        return Result.ok(null);
+    }
 }

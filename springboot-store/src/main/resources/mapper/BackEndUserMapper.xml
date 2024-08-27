@@ -19,4 +19,9 @@
         update shop_user set username = #{user.username}, password = #{user.password}, email = #{user.email}
         where uid = #{user.uid};
     </update>
+
+    <delete id="userDel">
+        delete from shop_user
+        where uid = #{uid};
+    </delete>
 </mapper>

@@ -9,4 +9,5 @@ public interface BackEndUserMapper {
     String login(String username);
     List<User> backendUser();
     int userEdit(@Param("user")User user);
+    int userDel(@Param("uid") Integer uid);
 }

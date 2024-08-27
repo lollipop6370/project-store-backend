@@ -32,4 +32,9 @@ public class BackEndUserController {
         Result result = backEndUserService.userEdit(user);
         return result;
     }
+    @DeleteMapping("/user")
+    public Result userDel(Integer uid){
+        Result result = backEndUserService.userDel(uid);
+        return result;
+    }
 }

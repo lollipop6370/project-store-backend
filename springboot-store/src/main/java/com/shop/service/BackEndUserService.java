@@ -7,4 +7,5 @@ public interface BackEndUserService {
     Result login(String username, String password);
     Result backendUser();
     Result userEdit(User user);
+    Result userDel(Integer uid);
 }
