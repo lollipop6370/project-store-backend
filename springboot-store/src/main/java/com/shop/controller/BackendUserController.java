@@ -1,7 +1,7 @@
 package com.shop.controller;
 
 import com.shop.pojo.User;
-import com.shop.service.BackEndUserService;
+import com.shop.service.BackendUserService;
 import com.shop.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/backend/user")
 @ResponseBody
 @CrossOrigin
-public class BackEndUserController {
+public class BackendUserController {
 
-    private BackEndUserService backEndUserService;
+    private BackendUserService backEndUserService;
 
-    BackEndUserController(BackEndUserService backEndUserService){
+    BackendUserController(BackendUserService backEndUserService){
         this.backEndUserService = backEndUserService;
     }
     @GetMapping("")

@@ -1,10 +1,9 @@
 package com.shop.service.impl;
 
-import com.shop.mapper.BackEndUserMapper;
+import com.shop.mapper.BackendUserMapper;
 import com.shop.pojo.User;
-import com.shop.service.BackEndUserService;
+import com.shop.service.BackendUserService;
 import com.shop.utils.Result;
-import com.shop.utils.ResultCodeEnum;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +11,11 @@ import java.util.List;
 import static java.lang.Math.ceil;
 
 @Service
-public class BackEndUserServiceImpl implements BackEndUserService {
+public class BackendUserServiceImpl implements BackendUserService {
 
-    private BackEndUserMapper backEndUserMapper;
+    private BackendUserMapper backEndUserMapper;
 
-    BackEndUserServiceImpl(BackEndUserMapper backEndUserMapper){
+    BackendUserServiceImpl(BackendUserMapper backEndUserMapper){
         this.backEndUserMapper = backEndUserMapper;
     }
 

@@ -1,6 +1,6 @@
 package com.shop.controller;
 
-import com.shop.service.BackEndService;
+import com.shop.service.BackendService;
 import com.shop.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/backend")
 @ResponseBody
 @CrossOrigin
-public class BackEndController {
+public class BackendController {
 
-    private BackEndService backendService;
+    private BackendService backendService;
 
-    BackEndController(BackEndService backendService){
+    BackendController(BackendService backendService){
         this.backendService = backendService;
     }
     @GetMapping("/login")

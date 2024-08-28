@@ -1,16 +1,16 @@
 package com.shop.service.impl;
 
-import com.shop.mapper.BackEndMapper;
-import com.shop.service.BackEndService;
+import com.shop.mapper.BackendMapper;
+import com.shop.service.BackendService;
 import com.shop.utils.Result;
 import com.shop.utils.ResultCodeEnum;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BackEndServiceImpl implements BackEndService {
-    private BackEndMapper backEndMapper;
+public class BackendServiceImpl implements BackendService {
+    private BackendMapper backEndMapper;
 
-    BackEndServiceImpl(BackEndMapper backEndMapper){
+    BackendServiceImpl(BackendMapper backEndMapper){
         this.backEndMapper = backEndMapper;
     }
     public Result login(String username,String password){

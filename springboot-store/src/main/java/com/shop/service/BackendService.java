@@ -2,6 +2,6 @@ package com.shop.service;
 
 import com.shop.utils.Result;
 
-public interface BackEndService {
+public interface BackendService {
     Result login(String username, String password);
 }
