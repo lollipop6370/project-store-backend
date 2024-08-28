@@ -26,4 +26,12 @@ public class BackendProductServiceImpl implements BackendProductService {
         Integer count = backendProductMapper.backendProductCount();
         return Result.ok(ceil(Double.valueOf(count)/pageSize));
     }
+    public Result backendProductEdit(Product product){
+        backendProductMapper.backendProductEdit(product);
+        return Result.ok(null);
+    }
+    public Result backendProductDel(Integer id){
+        backendProductMapper.backendProductDel(id);
+        return Result.ok(null);
+    }
 }

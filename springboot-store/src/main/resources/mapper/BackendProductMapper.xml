@@ -13,4 +13,14 @@
         select count(*)
         from shop_product;
     </select>
+
+    <update id="backendProductEdit">
+        update shop_product set name = #{product.name}, price = #{product.price}, type = #{product.type}
+        where id = #{product.id};
+    </update>
+
+    <delete id="backendProductDel">
+        delete from shop_product
+        where id = #{id};
+    </delete>
 </mapper>

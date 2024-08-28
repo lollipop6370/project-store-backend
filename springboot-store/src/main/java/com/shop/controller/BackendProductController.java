@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.pojo.Product;
 import com.shop.service.BackendProductService;
 import com.shop.utils.Result;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ public class BackendProductController {
     BackendProductController(BackendProductService backendProductService){
         this.backendProductService = backendProductService;
     }
-
     /**
      * 獲取商品資訊
      * @param currentPage :Integer
@@ -26,7 +26,6 @@ public class BackendProductController {
         Result result = backendProductService.backendProduct(currentPage,pageSize);
         return result;
     }
-
     /**
      * 獲取商品總頁數
      * @param pageSize:Integer
@@ -35,6 +34,27 @@ public class BackendProductController {
     @GetMapping("/page")
     public Result backendProductPage(@RequestParam("pageSize") Integer pageSize){
         Result result = backendProductService.backendProductPage(pageSize);
+        return result;
+    }
+    /**
+     * 編輯商品資訊
+     * @param product :Product
+     * @return null
+     */
+    @PostMapping("/edit")
+    public Result backendProductEdit(@RequestBody Product product){
+        Result result = backendProductService.backendProductEdit(product);
+        return result;
+    }
+
+    /**
+     * 刪除商品
+     * @param id :Integer
+     * @return null
+     */
+    @DeleteMapping("")
+    public Result backendProductDel(@RequestParam("id") Integer id){
+        Result result = backendProductService.backendProductDel(id);
         return result;
     }
 }
