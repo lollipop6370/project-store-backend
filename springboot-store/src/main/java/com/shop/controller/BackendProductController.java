@@ -5,6 +5,7 @@ import com.shop.service.BackendProductService;
 import com.shop.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/backend/product")
@@ -46,7 +47,6 @@ public class BackendProductController {
         Result result = backendProductService.backendProductEdit(product);
         return result;
     }
-
     /**
      * 刪除商品
      * @param id :Integer
@@ -55,6 +55,17 @@ public class BackendProductController {
     @DeleteMapping("")
     public Result backendProductDel(@RequestParam("id") Integer id){
         Result result = backendProductService.backendProductDel(id);
+        return result;
+    }
+    /**
+     * 接收圖片檔案
+     * @param file :MultipartFile
+     * @return null
+     */
+    @PostMapping("/new/img")
+    public Result backendProductImg(@RequestParam("file")MultipartFile file){
+
+        Result result = backendProductService.backendProductImg(file);
         return result;
     }
 }
