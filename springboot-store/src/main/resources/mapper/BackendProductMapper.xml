@@ -8,4 +8,9 @@
         from shop_product
         limit #{offset},#{pageSize}
     </select>
+
+    <select id="backendProductCount" resultType="integer">
+        select count(*)
+        from shop_product;
+    </select>
 </mapper>

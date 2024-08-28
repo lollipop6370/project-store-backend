@@ -14,9 +14,27 @@ public class BackendProductController {
     BackendProductController(BackendProductService backendProductService){
         this.backendProductService = backendProductService;
     }
+
+    /**
+     * 獲取商品資訊
+     * @param currentPage :Integer
+     * @param pageSize :Integer
+     * @return Product
+     */
     @GetMapping("")
     public Result backendProduct(@RequestParam("currentPage") Integer currentPage, @RequestParam("pageSize") Integer pageSize){
         Result result = backendProductService.backendProduct(currentPage,pageSize);
+        return result;
+    }
+
+    /**
+     * 獲取商品總頁數
+     * @param pageSize:Integer
+     * @return Integer
+     */
+    @GetMapping("/page")
+    public Result backendProductPage(@RequestParam("pageSize") Integer pageSize){
+        Result result = backendProductService.backendProductPage(pageSize);
         return result;
     }
 }

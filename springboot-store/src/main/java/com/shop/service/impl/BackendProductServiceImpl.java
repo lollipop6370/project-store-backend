@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Math.ceil;
+
 @Service
 public class BackendProductServiceImpl implements BackendProductService {
 
@@ -19,5 +21,9 @@ public class BackendProductServiceImpl implements BackendProductService {
         Integer offset = (currentPage - 1) * pageSize;
         List<Product> data = backendProductMapper.backendProduct(offset,pageSize);
         return Result.ok(data);
+    }
+    public Result backendProductPage(Integer pageSize){
+        Integer count = backendProductMapper.backendProductCount();
+        return Result.ok(ceil(Double.valueOf(count)/pageSize));
     }
 }
