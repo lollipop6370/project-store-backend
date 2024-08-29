@@ -13,5 +13,5 @@ public interface HomeMapper {
 
     List<Product> getNMProductByPage(int pageSize, int offset);
 
-    Product loadProductDetail(Integer itemId);
+    Product loadProductDetail(@Param("pid") Integer pid);
 }

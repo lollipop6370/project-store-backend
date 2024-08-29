@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.pojo.Product;
 import com.shop.service.BackendProductService;
 import com.shop.utils.Result;
@@ -49,12 +50,12 @@ public class BackendProductController {
     }
     /**
      * 刪除商品
-     * @param id :Integer
+     * @param pid :Integer
      * @return null
      */
     @DeleteMapping("")
-    public Result backendProductDel(@RequestParam("id") Integer id){
-        Result result = backendProductService.backendProductDel(id);
+    public Result backendProductDel(@RequestParam("pid") Integer pid){
+        Result result = backendProductService.backendProductDel(pid);
         return result;
     }
     /**
@@ -63,9 +64,16 @@ public class BackendProductController {
      * @return null
      */
     @PostMapping("/new/img")
-    public Result backendProductImg(@RequestParam("file")MultipartFile file){
-
-        Result result = backendProductService.backendProductImg(file);
+    public Result backendProductImg(@RequestParam("file")MultipartFile file, @RequestParam("product") String product){
+        //將 JSON 字符串轉回對象
+        ObjectMapper objectMapper = new ObjectMapper();
+        Product p;
+        try {
+            p = objectMapper.readValue(product, Product.class);
+        }catch (Exception e){
+            return Result.build(null,500,"JSON解析錯誤");
+        }
+        Result result = backendProductService.backendProductImg(file,p);
         return result;
     }
 }

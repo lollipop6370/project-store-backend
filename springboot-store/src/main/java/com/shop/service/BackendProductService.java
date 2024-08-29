@@ -8,6 +8,6 @@ public interface BackendProductService {
     Result backendProduct(Integer currentPage, Integer pageSize);
     Result backendProductPage(Integer pageSize);
     Result backendProductEdit(Product product);
-    Result backendProductDel(Integer id);
-    Result backendProductImg(MultipartFile file);
+    Result backendProductDel(Integer pid);
+    Result backendProductImg(MultipartFile file, Product product);
 }

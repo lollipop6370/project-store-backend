@@ -33,8 +33,8 @@ public class HomeController {
     }
 
     @GetMapping("/nmProductByPage/detail")
-    public Result loadProductDetail(Integer id){
-        Result result = homeService.loadProductDetail(id);
+    public Result loadProductDetail(Integer pid){
+        Result result = homeService.loadProductDetail(pid);
         return result;
     }
 }

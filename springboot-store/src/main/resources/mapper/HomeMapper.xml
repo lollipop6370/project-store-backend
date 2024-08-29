@@ -15,7 +15,7 @@
 
     <select id="loadProductDetail" resultType="Product">
         select * from shop_product
-        where id = #{id}
+        where pid = #{pid}
     </select>
 
 </mapper>

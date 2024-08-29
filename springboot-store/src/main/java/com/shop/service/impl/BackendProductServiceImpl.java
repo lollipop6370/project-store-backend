@@ -37,24 +37,27 @@ public class BackendProductServiceImpl implements BackendProductService {
         backendProductMapper.backendProductEdit(product);
         return Result.ok(null);
     }
-    public Result backendProductDel(Integer id){
-        backendProductMapper.backendProductDel(id);
+    public Result backendProductDel(Integer pid){
+        backendProductMapper.backendProductDel(pid);
         return Result.ok(null);
     }
-    public Result backendProductImg(MultipartFile file){
+    public Result backendProductImg(MultipartFile file, Product product){
         try{
             //確認目錄
-            Path uploadPath = Paths.get("uploads/");
+            Path uploadPath = Paths.get("src/main/resources/static/productImg/");
             if (!Files.exists(uploadPath)){
                 Files.createDirectories(uploadPath);
             }
-            //文件保存到指定目錄
-            Path filePath = uploadPath.resolve(file.getOriginalFilename());
+            //文件保存到指定目錄，圖片名以productPid命名
+            Path filePath = uploadPath.resolve(String.valueOf(product.getPid()) + ".jpg");
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-            return Result.ok(null);
         }catch (IOException e){
             return Result.build(null, 500,"文件上傳失敗");
         }
+
+        //商品詳細資料寫入資料庫
+        product.setImage("http://localhost:8080/productImg/" + product.getPid() + ".jpg");
+        backendProductMapper.backendProductNew(product);
+        return Result.ok(null);
     }
 }

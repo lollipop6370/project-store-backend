@@ -16,11 +16,15 @@
 
     <update id="backendProductEdit">
         update shop_product set name = #{product.name}, price = #{product.price}, type = #{product.type}
-        where id = #{product.id};
+        where pid = #{product.pid};
     </update>
 
     <delete id="backendProductDel">
         delete from shop_product
-        where id = #{id};
+        where pid = #{pid};
     </delete>
+
+    <insert id="backendProductNew">
+        insert into shop_product (`pid`,`name`,`price`,`image`,`type`) values (#{product.pid},#{product.name},#{product.price},#{product.image},#{product.type});
+    </insert>
 </mapper>

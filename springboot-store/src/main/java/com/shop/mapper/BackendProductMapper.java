@@ -9,5 +9,6 @@ public interface BackendProductMapper {
     List<Product> backendProduct(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize);
     Integer backendProductCount();
     int backendProductEdit(@Param("product") Product product);
-    int backendProductDel(@Param("id") Integer id);
+    int backendProductDel(@Param("pid") Integer pid);
+    int backendProductNew(@Param("product")Product product);
 }

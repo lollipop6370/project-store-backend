@@ -21,21 +21,21 @@ public class CartController {
     }
 
     @GetMapping("/updateList")
-    public Result updateList(@RequestHeader String token, Integer id, Integer quantity){
-        Result result = cartService.updateList(token,id,quantity);
+    public Result updateList(@RequestHeader String token, Integer pid, Integer quantity){
+        Result result = cartService.updateList(token,pid,quantity);
         return result;
     }
 
     @GetMapping("/deleteItem")
-    public Result deleteItem(@RequestHeader String token, Integer id){
-        Result result = cartService.deleteItem(token,id);
+    public Result deleteItem(@RequestHeader String token, Integer pid){
+        Result result = cartService.deleteItem(token,pid);
         return result;
     }
 
     @GetMapping("/newItem")
-    public Result newItem(@RequestHeader String token, Integer id, Integer count){
-        System.out.println(id +" " + count);
-        Result result = cartService.newItem(token,id,count);
+    public Result newItem(@RequestHeader String token, Integer pid, Integer count){
+        System.out.println(pid +" " + count);
+        Result result = cartService.newItem(token,pid,count);
         return result;
     }
 }
