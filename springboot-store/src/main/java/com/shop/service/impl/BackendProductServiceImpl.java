@@ -44,7 +44,7 @@ public class BackendProductServiceImpl implements BackendProductService {
     public Result backendProductImg(MultipartFile file, Product product){
         try{
             //確認目錄
-            Path uploadPath = Paths.get("src/main/resources/static/productImg/");
+            Path uploadPath = Paths.get("images/");
             if (!Files.exists(uploadPath)){
                 Files.createDirectories(uploadPath);
             }
@@ -56,7 +56,7 @@ public class BackendProductServiceImpl implements BackendProductService {
         }
 
         //商品詳細資料寫入資料庫
-        product.setImage("http://localhost:8080/productImg/" + product.getPid() + ".jpg");
+        product.setImage("http://localhost:8080/images/" + product.getPid() + ".jpg");
         backendProductMapper.backendProductNew(product);
         return Result.ok(null);
     }
