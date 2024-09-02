@@ -1,15 +1,14 @@
 package com.shop.mapper;
 
 import com.shop.pojo.Product;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface CartMapper {
-    List<Product> getUserCartByUId(Integer uid);
-
-    int updateList(Long uid, Integer pid, Integer quantity);
-
-    int deleteItem(Long uid, Integer pid);
-
-    int newItem(Long uid, Integer pid, Integer quantity);
+    List<Product> getUserCartByUId(@Param("uid") Integer uid);
+    int updateList(@Param("uid") Long uid,@Param("pid") Integer pid,@Param("quantity") Integer quantity);
+    int deleteItem(@Param("uid") Long uid,@Param("pid") Integer pid);
+    int clearItem(@Param("uid") Long uid);
+    int newItem(@Param("uid") Long uid,@Param("pid") Integer pid,@Param("quantity") Integer quantity);
 }

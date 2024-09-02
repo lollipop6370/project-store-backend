@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.OrderMapper">
+    <insert id="newOrder" useGeneratedKeys="true" keyProperty="oid">
+        insert into `shop_order` (`uid`,`total_price`,`status`,`create_time`,`address`,`city`,`postal`,`receiver`)
+        values (#{order.uid},#{order.totalPrice},0,current_date(),#{order.address},#{order.city},#{order.postal},#{order.receiver});
+    </insert>
+
+    <insert id="newOrderItems">
+        insert into `order_items` (`oid`,`pid`,`quantity`) values
+                                      <foreach collection="orderItems" item="items" separator=",">
+                                        (#{items.oid},#{items.pid},#{items.quantity})
+                                      </foreach>
+    </insert>
+</mapper>

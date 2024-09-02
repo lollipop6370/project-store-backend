@@ -55,6 +55,17 @@ public class CartServiceImpl implements CartService {
     }
 
     /**
+     * 清空購物車
+     * @param token :String
+     * @return null
+     */
+    public Result clearItem(String token){
+        Long uid = jwtProvider.getUserId(token);
+        cartMapper.clearItem(uid);
+        return Result.ok(null);
+    }
+
+    /**
      * 購物車添加新物品
      * @param token :String
      * @param pid :Integer

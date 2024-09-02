@@ -7,20 +7,25 @@
     <select id="getUserCartByUId" resultType="Product">
         select p.`pid`,p.`name`,p.`price`,p.`image`,p.`type`,c.`quantity`
         from shop_user_cart c left join shop_product p on c.`product_id` = p.`pid`
-        where c.`uid` = #{uid}
+        where c.`uid` = #{uid};
     </select>
 
     <update id="updateList">
         update shop_user_cart set `quantity` = #{quantity}
-        where `uid` = #{uid} and `product_id` = #{pid}
+        where `uid` = #{uid} and `product_id` = #{pid};
     </update>
 
     <delete id="deleteItem">
         delete from shop_user_cart
-        where `uid` = #{uid} and `product_id` = #{pid}
+        where `uid` = #{uid} and `product_id` = #{pid};
+    </delete>
+
+    <delete id="clearItem">
+        delete from shop_user_cart
+        where uid = #{uid};
     </delete>
 
     <insert id="newItem">
-        insert into shop_user_cart (`uid`,`product_id`,`quantity`) values (#{uid},#{pid},#{quantity})
+        insert into shop_user_cart (`uid`,`product_id`,`quantity`) values (#{uid},#{pid},#{quantity});
     </insert>
 </mapper>

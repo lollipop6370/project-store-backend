@@ -7,6 +7,6 @@ public interface CartService {
 
     Result updateList(String token, Integer pid, Integer quantity);
     Result deleteItem(String token, Integer pid);
-
+    Result clearItem(String token);
     Result newItem(String token, Integer pid, Integer quantity);
 }

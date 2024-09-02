@@ -19,19 +19,21 @@ public class CartController {
         Result result = cartService.getUserCart(uid);
         return result;
     }
-
     @GetMapping("/updateList")
     public Result updateList(@RequestHeader String token, Integer pid, Integer quantity){
         Result result = cartService.updateList(token,pid,quantity);
         return result;
     }
-
     @GetMapping("/deleteItem")
     public Result deleteItem(@RequestHeader String token, Integer pid){
         Result result = cartService.deleteItem(token,pid);
         return result;
     }
-
+    @DeleteMapping("/deleteItem")
+    public Result clearItem(@RequestHeader String token){
+        Result result = cartService.clearItem(token);
+        return result;
+    }
     @GetMapping("/newItem")
     public Result newItem(@RequestHeader String token, Integer pid, Integer count){
         System.out.println(pid +" " + count);
