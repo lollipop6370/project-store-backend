@@ -9,4 +9,6 @@ import java.util.List;
 public interface OrderService {
     Result newOrder(Order order);
     Result newOrderItems(List<OrderItems> orderItems);
+    Result readOrder(String token);
+    Result getOrderDetail(Integer oid);
 }

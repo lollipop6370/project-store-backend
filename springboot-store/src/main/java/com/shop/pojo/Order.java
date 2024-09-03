@@ -11,4 +11,6 @@ public class Order {
     private String city;
     private Integer postal;
     private String receiver;
+    private Integer status;
+    private String createTime;
 }

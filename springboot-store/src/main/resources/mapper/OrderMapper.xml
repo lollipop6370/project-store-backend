@@ -14,4 +14,16 @@
                                         (#{items.oid},#{items.pid},#{items.quantity})
                                       </foreach>
     </insert>
+
+    <select id="readOrder" resultType="order">
+        select *
+        from `shop_order`
+        where uid = #{uid};
+    </select>
+
+    <select id="getOrderDetail" resultType="orderItems">
+        select s.`name` name, oi.`quantity` quantity, (s.`price` * oi.`quantity`) price
+        from order_items oi left join shop_product s on oi.`pid` = s.`pid`
+        where oi.`oid` = #{oid};
+    </select>
 </mapper>

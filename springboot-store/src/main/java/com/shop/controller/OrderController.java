@@ -28,4 +28,14 @@ public class OrderController {
         Result result = orderService.newOrderItems(orderItems);
         return result;
     }
+    @GetMapping("")
+    public Result readOrder(@RequestHeader String token){
+        Result result = orderService.readOrder(token);
+        return result;
+    }
+    @GetMapping("/items")
+    public Result getOrderDetail(@RequestParam("oid")Integer oid){
+        Result result = orderService.getOrderDetail(oid);
+        return result;
+    }
 }
