@@ -11,4 +11,5 @@ public interface OrderMapper {
     int newOrderItems(@Param("orderItems")List<OrderItems> orderItems);
     List<Order> readOrder(@Param("uid")Long uid);
     List<OrderItems> getOrderDetail(@Param("oid") Integer oid);
+    Integer getOrderCount(@Param("uid") Long uid);
 }

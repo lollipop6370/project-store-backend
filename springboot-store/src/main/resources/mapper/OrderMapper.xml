@@ -26,4 +26,10 @@
         from order_items oi left join shop_product s on oi.`pid` = s.`pid`
         where oi.`oid` = #{oid};
     </select>
+
+    <select id="getOrderCount" resultType="integer">
+        select count(*)
+        from shop_order
+        where uid = #{uid};
+    </select>
 </mapper>

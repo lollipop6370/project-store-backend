@@ -38,4 +38,9 @@ public class OrderController {
         Result result = orderService.getOrderDetail(oid);
         return result;
     }
+    @GetMapping("/totalPage")
+    public Result getOrderCount(@RequestParam("pageSize")Integer pageSize, @RequestHeader String token){
+        Result result = orderService.getOrderCount(pageSize,token);
+        return result;
+    }
 }

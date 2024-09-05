@@ -11,4 +11,5 @@ public interface OrderService {
     Result newOrderItems(List<OrderItems> orderItems);
     Result readOrder(String token);
     Result getOrderDetail(Integer oid);
+    Result getOrderCount(Integer pageSize, String token);
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Math.ceil;
+
 @Service
 public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
@@ -37,5 +39,10 @@ public class OrderServiceImpl implements OrderService {
     public Result getOrderDetail(Integer oid){
         List<OrderItems> data = orderMapper.getOrderDetail(oid);
         return Result.ok(data);
+    }
+    public Result getOrderCount(Integer pageSize, String token){
+        Long uid = jwtProvider.getUserId(token);
+        Integer count = orderMapper.getOrderCount(uid);
+        return Result.ok(ceil(Double.valueOf(count)/pageSize));
     }
 }

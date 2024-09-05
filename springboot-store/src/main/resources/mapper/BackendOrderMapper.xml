@@ -10,4 +10,20 @@
         limit #{offset},#{pageSize};
     </select>
 
+    <select id="getBEOrderItems" resultType="orderItems">
+        select s.name, oi.quantity, (s.price * oi.quantity) price
+        from order_items oi left join shop_product s on oi.pid = s.pid
+        where oi.oid = #{oid};
+    </select>
+
+    <update id="editBEOrderStatus">
+        update shop_order set status = #{status}
+        where oid = #{oid};
+    </update>
+
+    <select id="getBEOrderCount" resultType="integer">
+        select count(*)
+        from shop_order;
+    </select>
+
 </mapper>
