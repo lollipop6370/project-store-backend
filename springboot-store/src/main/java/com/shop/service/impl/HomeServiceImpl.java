@@ -18,23 +18,22 @@ public class HomeServiceImpl implements HomeService {
     private HomeMapper homeMapper;
 
     /**
-     * 獲取商品總數
+     * 獲取商品總頁數
      * @return int
      */
-    public Result getProductCount(){
-        int count = homeMapper.getProductCount();
-        return Result.ok(count);
+    public Result getProductCount(Integer pageSize, Integer priceRange){
+        int count = homeMapper.getProductCount(priceRange);
+        return Result.ok(Math.ceil(Double.valueOf(count)/pageSize));
     }
 
     /**
      * 依照分頁大小來回傳商品
-     * @param pageConfigItem
+     * @param
      * @return product
      */
-    public Result getNMProductByPage(PageConfigItem pageConfigItem){
-        int pagesize = pageConfigItem.getPageSize();
-        int offset = (pageConfigItem.getCurrentPage() - 1) * pageConfigItem.getPageSize();
-        List<Product> product = homeMapper.getNMProductByPage(pagesize,offset);
+    public Result getNMProductByPage(Integer currentPage, Integer pageSize, Integer priceRange){
+        Integer offset = (currentPage - 1) * pageSize;
+        List<Product> product = homeMapper.getNMProductByPage(offset,pageSize,priceRange);
         return Result.ok(product);
     }
 
@@ -46,5 +45,19 @@ public class HomeServiceImpl implements HomeService {
     public Result loadProductDetail(Integer itemId){
         Product product = homeMapper.loadProductDetail(itemId);
         return Result.ok(product);
+    }
+
+    public Result getProductType(){
+        String[] data = homeMapper.getProductType();
+        return Result.ok(data);
+    }
+    public Result getProductByFilter(List<String> type, Integer priceRange, Integer currentPage, Integer pageSize){
+        Integer offset = (currentPage - 1) * pageSize;
+        List<Product>data = homeMapper.getProductByFilter(type,priceRange,offset,pageSize);
+        return Result.ok(data);
+    }
+    public Result getProductByFilterCount(List<String> type, Integer priceRange, Integer pageSize){
+        Integer count = homeMapper.getProductByFilterCount(type,priceRange);
+        return Result.ok(Math.ceil(Double.valueOf(count)/pageSize));
     }
 }

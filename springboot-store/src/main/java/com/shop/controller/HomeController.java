@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @ResponseBody
 @RequestMapping("/home")
@@ -20,21 +22,30 @@ public class HomeController {
         this.homeService = homeService;
     }
 
-    @GetMapping("/productCount")
-    public Result getProductCount(){
-        Result result = homeService.getProductCount();
-        return result;
-    }
-
-    @PostMapping("/nmProductByPage")
-    public Result getNMProductByPage(@RequestBody PageConfigItem pageConfigItem){
-        Result result = homeService.getNMProductByPage(pageConfigItem);
-        return result;
-    }
-
     @GetMapping("/nmProductByPage/detail")
     public Result loadProductDetail(Integer pid){
         Result result = homeService.loadProductDetail(pid);
+        return result;
+    }
+    @GetMapping("/productType")
+    public Result getProductType(){
+        Result result = homeService.getProductType();
+        return result;
+    }
+    @GetMapping("/filter")
+    public Result getProductByFilter(@RequestParam(name="type", required=false) List<String> type, @RequestParam("priceRange") Integer priceRange,@RequestParam("currentPage") Integer currentPage,@RequestParam("pageSize")Integer pageSize){
+        if(type.isEmpty()){
+            return homeService.getNMProductByPage(currentPage,pageSize,priceRange);
+        }
+        Result result = homeService.getProductByFilter(type,priceRange,currentPage,pageSize);
+        return result;
+    }
+    @GetMapping("/filterCount")
+    public Result getProductByFilterCount(@RequestParam(name="type", required=false) List<String> type, @RequestParam("priceRange") Integer priceRange, @RequestParam("pageSize")Integer pageSize){
+        if(type.isEmpty()){
+            return homeService.getProductCount(pageSize,priceRange);
+        }
+        Result result = homeService.getProductByFilterCount(type,priceRange,pageSize);
         return result;
     }
 }

@@ -5,17 +5,52 @@
 <mapper namespace="com.shop.mapper.HomeMapper">
 
     <select id="getProductCount" resultType="int">
-        select count(*) from shop_product
+        select count(*) from shop_product where price &lt;= #{priceRange}
     </select>
 
     <select id="getNMProductByPage" resultType="Product">
         select * from shop_product
+        where price &lt;= #{priceRange}
         limit #{pageSize} offset #{offset}
     </select>
 
     <select id="loadProductDetail" resultType="Product">
         select * from shop_product
         where pid = #{pid}
+    </select>
+
+    <select id="getProductType" resultType="string">
+        select t_name
+        from product_type;
+    </select>
+
+    <select id="getProductByFilter" resultType="product">
+        select *
+        from shop_product
+        where `price` &lt;= #{priceRange} and `type` in (
+            select tid
+            from product_type
+            where t_name in (
+                    <foreach collection="type" item="tName" index="index" separator=",">
+                        #{tName}
+                    </foreach>
+                )
+        )
+        limit #{offset},#{pageSize};
+    </select>
+
+    <select id="getProductByFilterCount" resultType="integer">
+        select count(*)
+        from shop_product
+        where `price` &lt;= #{priceRange} and `type` in (
+        select tid
+        from product_type
+        where t_name in (
+        <foreach collection="type" item="tName" index="index" separator=",">
+            #{tName}
+        </foreach>
+        )
+        );
     </select>
 
 </mapper>
