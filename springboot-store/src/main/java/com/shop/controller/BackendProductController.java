@@ -59,8 +59,8 @@ public class BackendProductController {
         return result;
     }
     /**
-     * 接收圖片檔案
-     * @param file :MultipartFile
+     * 新增商品
+     * @param file :MultipartFile , product:string
      * @return null
      */
     @PostMapping("/new/img")

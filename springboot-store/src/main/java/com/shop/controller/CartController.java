@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import com.shop.pojo.Product;
 import com.shop.service.CartService;
 import com.shop.utils.Result;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,11 @@ public class CartController {
     public Result newItem(@RequestHeader String token, Integer pid, Integer count){
         System.out.println(pid +" " + count);
         Result result = cartService.newItem(token,pid,count);
+        return result;
+    }
+    @PutMapping("/productCount")
+    public Result productCountEdit(@RequestBody Product product){
+        Result result = cartService.productCountEdit(product.getPid(),product.getCount());
         return result;
     }
 }

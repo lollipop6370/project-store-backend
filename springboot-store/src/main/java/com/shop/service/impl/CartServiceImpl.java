@@ -77,4 +77,9 @@ public class CartServiceImpl implements CartService {
         cartMapper.newItem(uid,pid,quantity);
         return Result.ok(null);
     }
+
+    public Result productCountEdit(Integer itemId, Integer count){
+        cartMapper.productCountEdit(itemId,count);
+        return Result.ok(null);
+    }
 }

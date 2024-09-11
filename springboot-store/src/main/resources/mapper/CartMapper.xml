@@ -28,4 +28,9 @@
     <insert id="newItem">
         insert into shop_user_cart (`uid`,`product_id`,`quantity`) values (#{uid},#{pid},#{quantity});
     </insert>
+
+    <update id="productCountEdit">
+        update `shop_product` set count = count - #{count}
+        where pid = #{itemId};
+    </update>
 </mapper>

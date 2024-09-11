@@ -9,4 +9,5 @@ public interface CartService {
     Result deleteItem(String token, Integer pid);
     Result clearItem(String token);
     Result newItem(String token, Integer pid, Integer quantity);
+    Result productCountEdit(Integer itemId, Integer count);
 }

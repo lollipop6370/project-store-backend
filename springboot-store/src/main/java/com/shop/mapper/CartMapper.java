@@ -11,4 +11,5 @@ public interface CartMapper {
     int deleteItem(@Param("uid") Long uid,@Param("pid") Integer pid);
     int clearItem(@Param("uid") Long uid);
     int newItem(@Param("uid") Long uid,@Param("pid") Integer pid,@Param("quantity") Integer quantity);
+    int productCountEdit(@Param("itemId")Integer itemId, @Param("count")Integer count);
 }
