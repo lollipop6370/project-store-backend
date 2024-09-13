@@ -2,8 +2,10 @@ package com.shop.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Order {
+public class Order implements Serializable {
     private Integer oid;
     private Integer uid;
     private Integer totalPrice;

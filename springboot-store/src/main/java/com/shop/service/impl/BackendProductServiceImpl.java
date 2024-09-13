@@ -5,6 +5,8 @@ import com.shop.pojo.Product;
 import com.shop.service.BackendProductService;
 import com.shop.utils.Result;
 import com.shop.utils.ResultCodeEnum;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,14 +35,23 @@ public class BackendProductServiceImpl implements BackendProductService {
         Integer count = backendProductMapper.backendProductCount();
         return Result.ok(ceil(Double.valueOf(count)/pageSize));
     }
+    @CacheEvict(value = "product_detail", key = "#product.pid")
     public Result backendProductEdit(Product product){
         backendProductMapper.backendProductEdit(product);
         return Result.ok(null);
     }
+    @CacheEvict(value = "product_detail", key = "#pid")
     public Result backendProductDel(Integer pid){
         backendProductMapper.backendProductDel(pid);
         return Result.ok(null);
     }
+
+    /**
+     * 新增商品
+     * @param file
+     * @param product
+     * @return
+     */
     public Result backendProductImg(MultipartFile file, Product product){
         try{
             //確認目錄

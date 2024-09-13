@@ -1,9 +1,11 @@
 package com.shop.utils;
 
+import java.io.Serializable;
+
 /**
  * 統一返回結果類
  */
-public class Result<T> {
+public class Result<T> implements Serializable {
     //返回狀態碼
     private Integer code;
     //返回訊息

@@ -6,6 +6,7 @@ import com.shop.pojo.Product;
 import com.shop.service.HomeService;
 import com.shop.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,10 +28,11 @@ public class HomeServiceImpl implements HomeService {
     }
 
     /**
-     * 依照分頁大小來回傳商品
+     * 依照分頁大小&金額範圍來回傳商品
      * @param
      * @return product
      */
+    @Cacheable(value = "noFilterProduct" , key = "'currentPage=' + #currentPage + '&priceRange=' + #priceRange")
     public Result getNMProductByPage(Integer currentPage, Integer pageSize, Integer priceRange){
         Integer offset = (currentPage - 1) * pageSize;
         List<Product> product = homeMapper.getNMProductByPage(offset,pageSize,priceRange);
@@ -42,15 +44,18 @@ public class HomeServiceImpl implements HomeService {
      * @param itemId int
      * @return product
      */
+    @Cacheable(value = "product_detail", key = "#itemId")
     public Result loadProductDetail(Integer itemId){
         Product product = homeMapper.loadProductDetail(itemId);
         return Result.ok(product);
     }
 
+    @Cacheable(value = "product_type", key = "'type'")
     public Result getProductType(){
         String[] data = homeMapper.getProductType();
         return Result.ok(data);
     }
+    @Cacheable(value = "filterProduct", keyGenerator = "productKeyGenerator")
     public Result getProductByFilter(List<String> type, Integer priceRange, Integer currentPage, Integer pageSize){
         Integer offset = (currentPage - 1) * pageSize;
         List<Product>data = homeMapper.getProductByFilter(type,priceRange,offset,pageSize);

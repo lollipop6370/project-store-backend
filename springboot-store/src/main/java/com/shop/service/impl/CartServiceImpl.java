@@ -5,6 +5,8 @@ import com.shop.pojo.Product;
 import com.shop.service.CartService;
 import com.shop.utils.JwtProvider;
 import com.shop.utils.Result;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +38,7 @@ public class CartServiceImpl implements CartService {
      * @param quantity :Integer
      * @return null
      */
+    @CacheEvict(value = "product_detail", key = "#pid")
     public Result updateList(String token, Integer pid, Integer quantity){
         Long uid = jwtProvider.getUserId(token);
         cartMapper.updateList(uid,pid,quantity);
@@ -48,6 +51,7 @@ public class CartServiceImpl implements CartService {
      * @param pid :Integer
      * @return null
      */
+    @CacheEvict(value = "product_detail", key = "#pid")
     public Result deleteItem(String token, Integer pid){
         Long uid = jwtProvider.getUserId(token);
         cartMapper.deleteItem(uid,pid);
@@ -72,6 +76,7 @@ public class CartServiceImpl implements CartService {
      * @param quantity :Integer
      * @return null
      */
+    @CacheEvict(value = "product_detail", key = "#pid")
     public Result newItem(String token, Integer pid, Integer quantity){
         Long uid = jwtProvider.getUserId(token);
         cartMapper.newItem(uid,pid,quantity);

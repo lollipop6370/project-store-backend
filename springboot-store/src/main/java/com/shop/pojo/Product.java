@@ -2,8 +2,10 @@ package com.shop.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Product {
+public class Product implements Serializable {
     private Integer pid;
     private String name;
     private Double price;
