@@ -15,7 +15,7 @@
     </select>
 
     <update id="backendProductEdit">
-        update shop_product set name = #{product.name}, price = #{product.price}, type = #{product.type}
+        update shop_product set name = #{product.name}, price = #{product.price}, type = #{product.type}, count = #{product.count}, image = #{product.image}
         where pid = #{product.pid};
     </update>
 
@@ -24,7 +24,7 @@
         where pid = #{pid};
     </delete>
 
-    <insert id="backendProductNew">
-        insert into shop_product (`pid`,`name`,`price`,`image`,`type`) values (#{product.pid},#{product.name},#{product.price},#{product.image},#{product.type});
+    <insert id="backendProductNew" useGeneratedKeys="true" keyProperty="pid">
+        insert into shop_product (`pid`,`name`,`price`,`image`,`type`,`count`) values (#{product.pid},#{product.name},#{product.price},#{product.image},#{product.type},#{product.count});
     </insert>
 </mapper>
