@@ -82,7 +82,7 @@ public class BackendProductServiceImpl implements BackendProductService {
             file.transferTo(originalFile);
 
             Thumbnails.of(originalFile)
-                    .size(180, 180)  //調整大小，不會破壞長寬比例
+                    .size(250, 250)  //調整大小，不會破壞長寬比例
                     .toFile(filePath.toFile());
             //Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         }catch (IOException e){
