@@ -65,13 +65,10 @@ public class OrderController {
     public Result payFeedBack(HttpServletRequest request, HttpServletResponse response){
         // 從第三方 API 接收返回的支付結果
         String paymentStatus = request.getParameter("Status");
-        String tradeInfo = request.getParameter("TradeInfo");
-        String redirectUrl = orderService.payFeedBack(tradeInfo);
-        /*try {
-            response.sendRedirect(redirectUrl);
-        }catch (IOException e){
-            e.printStackTrace();
-        }*/
+        if(paymentStatus.equals("SUCCESS")) {
+            String tradeInfo = request.getParameter("TradeInfo");
+            orderService.payFeedBack(tradeInfo);
+        }
         return null;
     }
 }
