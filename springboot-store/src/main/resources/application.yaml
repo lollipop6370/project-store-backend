@@ -1,6 +1,7 @@
 #主機host
-myHost: 192.168.98.86
+myHost: 34.44.233.80
 #127.0.0.1
+#192.168.98.86
 
 #靜態圖片位置
 imagePath: /tmp/images/
@@ -8,7 +9,7 @@ imagePath: /tmp/images/
 
 #server配置
 server:
-  port: 8080
+  port: 8002
   servlet:
     context-path: /
 
@@ -17,14 +18,14 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql://192.168.98.86:3306/shop_db
+      url: jdbc:mysql://34.44.233.80:3306/shop_db
       username: root
       password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
 #redis配置
   data:
     redis:
-      host: 192.168.98.86
+      host: 34.44.233.80
       port: 6379
 
 #mybatis-plus配置

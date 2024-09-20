@@ -91,7 +91,7 @@ public class BackendProductServiceImpl implements BackendProductService {
         }
 
         //商品詳細資料寫入資料庫
-        String s = "http://" + host + ":8080/images/" + product.getPid() + ".jpg";
+        String s = "http://" + host + ":8002/images/" + product.getPid() + ".jpg";
         product.setImage(s);
         backendProductMapper.backendProductEdit(product);
         return Result.ok(null);

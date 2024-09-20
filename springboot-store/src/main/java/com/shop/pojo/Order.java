@@ -15,4 +15,5 @@ public class Order implements Serializable {
     private String receiver;
     private Integer status;
     private String createTime;
+    private Integer pay;
 }

@@ -18,7 +18,8 @@
     <select id="readOrder" resultType="order">
         select *
         from `shop_order`
-        where uid = #{uid};
+        where uid = #{uid}
+        limit #{offset},#{pageSize};
     </select>
 
     <select id="getOrderDetail" resultType="orderItems">
@@ -32,4 +33,14 @@
         from shop_order
         where uid = #{uid};
     </select>
+
+    <delete id="delNoPayOrder">
+        delete
+        from `shop_order`
+        where oid = #{oid};
+    </delete>
+
+    <update id="paySuccess">
+        update `shop_order` set pay = 1 where oid = #{oid};
+    </update>
 </mapper>

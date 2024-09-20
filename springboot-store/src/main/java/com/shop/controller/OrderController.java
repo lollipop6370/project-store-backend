@@ -4,9 +4,17 @@ import com.shop.pojo.Order;
 import com.shop.pojo.OrderItems;
 import com.shop.service.OrderService;
 import com.shop.utils.Result;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -28,9 +36,14 @@ public class OrderController {
         Result result = orderService.newOrderItems(orderItems);
         return result;
     }
+    @PostMapping("/createPayment")
+    public Result createPayment(@RequestBody Order order){
+        MultiValueMap payPara = orderService.createPayment(order);
+        return Result.ok(payPara);
+    }
     @GetMapping("")
-    public Result readOrder(@RequestHeader String token){
-        Result result = orderService.readOrder(token);
+    public Result readOrder(@RequestParam("currentPage")Integer currentPage, @RequestParam("pageSize") Integer pageSize, @RequestHeader String token){
+        Result result = orderService.readOrder(currentPage, pageSize, token);
         return result;
     }
     @GetMapping("/items")
@@ -39,8 +52,26 @@ public class OrderController {
         return result;
     }
     @GetMapping("/totalPage")
-    public Result getOrderCount(@RequestParam("pageSize")Integer pageSize, @RequestHeader String token){
-        Result result = orderService.getOrderCount(pageSize,token);
+    public Result getOrderPageCount(@RequestParam("pageSize")Integer pageSize, @RequestHeader String token){
+        Result result = orderService.getOrderPageCount(pageSize,token);
         return result;
+    }
+    @DeleteMapping("/noPayOrder")
+    public Result delNoPayOrder(@RequestParam("oid") Integer oid){
+        Result result = orderService.delNoPayOrder(oid);
+        return result;
+    }
+    @PostMapping("/payFeedBack")
+    public Result payFeedBack(HttpServletRequest request, HttpServletResponse response){
+        // 從第三方 API 接收返回的支付結果
+        String paymentStatus = request.getParameter("Status");
+        String tradeInfo = request.getParameter("TradeInfo");
+        String redirectUrl = orderService.payFeedBack(tradeInfo);
+        /*try {
+            response.sendRedirect(redirectUrl);
+        }catch (IOException e){
+            e.printStackTrace();
+        }*/
+        return null;
     }
 }

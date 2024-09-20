@@ -101,6 +101,13 @@
             <artifactId>thumbnailator</artifactId>
             <version>0.4.14</version>
         </dependency>
+
+        <!-- URI Builder 依賴 -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
     </dependencies>
 
     <!-- springboot打包插件 -->
