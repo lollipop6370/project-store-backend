@@ -10,4 +10,5 @@ public interface BackendProductService {
     Result backendProductEdit(Product product);
     Result backendProductDel(Integer pid);
     Result backendProductImg(MultipartFile file, Product product);
+    Result getTypeName();
 }

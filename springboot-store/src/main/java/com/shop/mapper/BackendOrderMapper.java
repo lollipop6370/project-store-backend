@@ -11,4 +11,5 @@ public interface BackendOrderMapper {
     List<OrderItems> getBEOrderItems(@Param("oid")Integer oid);
     int editBEOrderStatus(@Param("oid")Integer oid, @Param("status")Integer status);
     Integer getBEOrderCount();
+    int backendDelOrder(@Param("oid") Integer oid);
 }

@@ -26,4 +26,8 @@
         from shop_order;
     </select>
 
+    <delete id="backendDelOrder">
+        delete from shop_order where oid = #{oid};
+    </delete>
+
 </mapper>

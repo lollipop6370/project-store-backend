@@ -35,4 +35,8 @@ public class BackendOrderServiceImpl implements BackendOrderService {
         Integer totalCount = backendOrderMapper.getBEOrderCount();
         return Result.ok(ceil(Double.valueOf(totalCount) / pageSize));
     }
+    public Result backendDelOrder(Integer oid){
+        backendOrderMapper.backendDelOrder(oid);
+        return Result.ok(null);
+    }
 }

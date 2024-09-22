@@ -2,6 +2,7 @@ package com.shop.service.impl;
 
 import com.shop.mapper.BackendProductMapper;
 import com.shop.pojo.Product;
+import com.shop.pojo.ProductType;
 import com.shop.service.BackendProductService;
 import com.shop.utils.Result;
 import com.shop.utils.ResultCodeEnum;
@@ -78,13 +79,9 @@ public class BackendProductServiceImpl implements BackendProductService {
         Path filePath = uploadPath.resolve(String.valueOf(product.getPid()) + ".jpg");
         //壓縮圖片並保存
         try{
-            File originalFile = new File(imagePath + fileName);
-            file.transferTo(originalFile);
-
-            Thumbnails.of(originalFile)
+            Thumbnails.of(file.getInputStream())
                     .size(250, 250)  //調整大小，不會破壞長寬比例
                     .toFile(filePath.toFile());
-            //Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         }catch (IOException e){
             System.out.println("保存圖片失敗");
             return Result.build(null, 500,"文件上傳失敗");
@@ -95,5 +92,9 @@ public class BackendProductServiceImpl implements BackendProductService {
         product.setImage(s);
         backendProductMapper.backendProductEdit(product);
         return Result.ok(null);
+    }
+    public Result getTypeName(){
+        List<ProductType> productTypes = backendProductMapper.getTypeName();
+        return Result.ok(productTypes);
     }
 }

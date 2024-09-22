@@ -35,4 +35,9 @@ public class BackendOrderController {
         Result result = backendOrderService.getBEOrderCount(pageSize);
         return result;
     }
+    @DeleteMapping("")
+    public Result backendDelOrder(@RequestParam("oid") Integer oid){
+        Result result = backendOrderService.backendDelOrder(oid);
+        return result;
+    }
 }

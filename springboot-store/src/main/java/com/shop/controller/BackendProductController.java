@@ -76,4 +76,9 @@ public class BackendProductController {
         Result result = backendProductService.backendProductImg(file,p);
         return result;
     }
+    @GetMapping("/type")
+    public Result getTypeName(){
+        Result result = backendProductService.getTypeName();
+        return result;
+    }
 }

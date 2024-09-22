@@ -8,4 +8,5 @@ public interface BackendOrderService {
     Result getBEOrderItems(Integer oid);
     Result editBEOrderStatus(Order order);
     Result getBEOrderCount(Integer pageSize);
+    Result backendDelOrder(Integer oid);
 }

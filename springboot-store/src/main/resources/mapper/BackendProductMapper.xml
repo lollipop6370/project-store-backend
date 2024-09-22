@@ -27,4 +27,8 @@
     <insert id="backendProductNew" useGeneratedKeys="true" keyProperty="pid">
         insert into shop_product (`pid`,`name`,`price`,`image`,`type`,`count`) values (#{product.pid},#{product.name},#{product.price},#{product.image},#{product.type},#{product.count});
     </insert>
+
+    <select id="getTypeName" resultType="productType">
+        select * from product_type;
+    </select>
 </mapper>
